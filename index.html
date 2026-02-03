@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Fat Loss Plan</title>
+    <meta name="description" content="Generate a simple Kerala-style fat loss diet plan based on your goal.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍃</text></svg>">
+</head>
+<body>
+
+    <main class="app-container">
+        
+        <!-- Input Section -->
+        <section id="input-section" class="section active">
+            <header class="app-header">
+                <div class="logo">🍃 DietPlanner</div>
+                <h1>Create Your Fat Loss Plan</h1>
+                <p>Answer a few questions to get a personalized Kerala-style diet plan.</p>
+            </header>
+
+            <form id="diet-form">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <div class="select-wrapper">
+                            <select id="gender" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="age">Age (years)</label>
+                        <input type="number" id="age" placeholder="e.g 25" min="15" max="100" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" placeholder="e.g 175" min="100" max="250" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="e.g 75" min="30" max="300" required>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label for="activity">Activity Level</label>
+                        <div class="select-wrapper">
+                            <select id="activity" required>
+                                <option value="" disabled selected>How active are you?</option>
+                                <option value="1.2">Sedentary (Office job, little exercise)</option>
+                                <option value="1.375">Light (Exercise 1-3 days/week)</option>
+                                <option value="1.55">Moderate (Exercise 3-5 days/week)</option>
+                                <option value="1.725">Active (Exercise 6-7 days/week)</option>
+                                <option value="1.9">Very Active (Physical job or 2x training)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Food Preference</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="preference" value="non-veg" checked>
+                                <span class="radio-content">
+                                    <span class="icon">🍗</span>
+                                    <span>Non-Veg</span>
+                                </span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="preference" value="veg">
+                                <span class="radio-content">
+                                    <span class="icon">🥦</span>
+                                    <span>Veg</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Goal Speed</label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="speed" value="0.25">
+                                <span class="radio-content">
+                                    <span>Slow</span>
+                                    <span class="sub">0.25kg/wk</span>
+                                </span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="speed" value="0.5" checked>
+                                <span class="radio-content">
+                                    <span>Normal</span>
+                                    <span class="sub">0.5kg/wk</span>
+                                </span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="speed" value="1.0">
+                                <span class="radio-content">
+                                    <span>Fast</span>
+                                    <span class="sub">1kg/wk</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Generate My Plan</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result-section" class="section hidden">
+            <header class="result-header">
+                <button id="back-btn" class="btn-icon" aria-label="Go Back">← Back</button>
+                <h2>Your 7-Day Plan</h2>
+                <button id="regenerate-btn" class="btn-secondary">Generage Again</button>
+            </header>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-label">Daily Calories</span>
+                    <span class="stat-value" id="target-calories">--</span>
+                    <span class="stat-unit">kcal</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Water Goal</span>
+                    <span class="stat-value" id="water-intake">--</span>
+                    <span class="stat-unit">Liters/day</span>
+                </div>
+                <!-- Hidden details for curious users -->
+                <div class="stat-details">
+                    <small>Maintenance: <span id="tdee-val">--</span> kcal</small>
+                </div>
+            </div>
+
+            <div class="week-plan" id="week-plan">
+                <!-- Cards will be injected here by JS -->
+            </div>
+            
+            <footer class="disclaimer">
+                <p>⚠️ Consult a doctor before starting any strict diet. This is a computer-generated suggestion.</p>
+            </footer>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
